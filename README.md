@@ -83,7 +83,7 @@ For Windows
 > cd .\server
 > npm install
 > npm run dev
-````
+```
 
 ## Features
 
