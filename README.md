@@ -1,5 +1,5 @@
 # Damla
-<img src="damla.gif" alt="Project show-off animation" width="90%"/>
+<img src="damla.gif" alt="Project show-off animation" width="100%"/>
 
 ## Description 
 
