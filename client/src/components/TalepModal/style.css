@@ -1,0 +1,14 @@
+.help-modal-alert {
+    font-size: 12px;
+    padding: 7px 10px !important;
+}
+.map-modal-check {
+    font-size: 12px;
+}
+/* .talep-modal {
+    position: absolute;
+    top: 4rem;
+    left: 2rem;
+    border: none;
+    z-index: 10;
+} */

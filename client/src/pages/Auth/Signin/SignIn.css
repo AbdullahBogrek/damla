@@ -1,0 +1,47 @@
+.google-button{
+    background-color: white;
+    border: 1px solid ghostwhite;
+    border-radius: 6px;
+}
+
+.google-button svg{
+    color: #ea4335;
+}
+
+.google-button:hover{
+    border: 1px solid #ea4335 !important;
+    transition: border 0.4s linear;
+}
+
+.facebook-button{
+    background-color: white;
+    border-radius: 6px;
+}
+
+.facebook-button svg{
+    color: #3b5998;
+}
+
+.facebook-button:hover{
+    border: 1px solid #3b5998 !important;
+    transition: border 0.4s linear;
+}
+
+.or-container {
+    align-items: center;
+    color: #ccc;
+    display: flex;
+    margin: 25px 0
+}
+
+.line-separator {
+    background-color: #ccc;
+    flex-grow: 5;
+    height: 1px
+}
+
+.or-label {
+    flex-grow: 1;
+    margin: 0 15px;
+    text-align: center
+}

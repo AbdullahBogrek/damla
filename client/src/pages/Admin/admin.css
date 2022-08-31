@@ -1,0 +1,64 @@
+hr {
+  width: 100%;
+  border: 0;
+  height: 1px;
+  background: #000;
+  opacity: 0.1;
+}
+.stats-section .counter {
+  padding: 22px 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
+}
+.stats-section .counter .count-data {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.stats-section .counter .count {
+  font-weight: 700;
+  color: #20247b;
+  margin: 0 0 5px;
+}
+.stats-section .counter p {
+  font-weight: 600;
+  margin: 0;
+}
+.circle {
+  width: 60px;
+  height: 60px;
+}
+.table{
+  font-size: 14px;
+}
+.modal-close-btn:hover {
+  background-color: #d4d4d4;
+  transition: ease-in .4s;
+  border-bottom-right-radius: 7px !important;
+}
+.modal-save-btn:hover{
+  background-color: #e2f7e7;
+  transition: ease-in .4s;
+  border-bottom-left-radius: 7px !important;
+}
+.modal-delete-btn:hover{
+  background-color: #f7e5e2;
+  transition: ease-in .4s;
+  border-bottom-left-radius: 7px !important;
+}
+.area-code {
+  height: 57px !important;
+  width: 57px;
+  border-radius: 6px;
+  background-color: #e9ecef;
+}
+.admin-header ul li:hover {
+  font-weight: 500;
+}
+.table-delete-btn{
+  margin-top: -8px;
+  margin-left: 5px;
+}
+tbody>tr>td{
+  font-size: 13px;
+}

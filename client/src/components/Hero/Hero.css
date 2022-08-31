@@ -1,0 +1,29 @@
+.hero-help{
+    color: #dc143c;
+}
+
+.hero-possibility{
+    color: #1db954;
+}
+
+.hero-sign-up-btn{
+    background-color:#1db954 !important;
+}
+
+.hero-sign-up-btn:hover{
+    border: #2b2b2b solid 1px;
+    transition: border .4s;
+}
+
+.hero-sign-in-btn{
+    color: #2b2b2b !important;
+}
+
+.hero-sign-in-btn:hover{
+    background-color:#1db954 !important;
+    transition: ease-in .4s;
+}
+
+.hero > .hero-img{
+    max-height: 30vh;
+}

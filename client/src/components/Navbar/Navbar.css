@@ -1,0 +1,63 @@
+.navbar{
+    border-bottom: 1px solid rgba(226 , 229, 222, .5);
+}
+
+.navbar-brand{
+    color: #1db954 !important;
+}
+
+.menu{
+    color: #1b1b1b !important;
+    font-size: bold;
+}
+
+.menu:hover{
+    color: #008000 !important;
+    transition: ease-in .5s;
+    font: bold;
+}
+
+.dropdownMenu{
+    color: #1b1b1b !important;
+    font-size: bold;
+    font-size: 13px;
+}
+
+.dropdownMenu:hover{
+    font-weight: 500;
+    color: #1db954 !important;
+    transition: ease .4;
+}
+
+.signup-btn{
+    background-color: #1db954;
+    border-radius: 3px;
+    color: #1b1b1b !important;
+}
+
+.signup-btn:hover{
+    background-color: #3b3b3b !important;
+    color: #24df65 !important;
+    transition:linear .3s;
+}
+
+.admin-btn{
+    border-radius: 8px;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-btn:hover{
+    transition:linear .4s;
+    color: #24df65 !important;
+}
+
+.menu-btn{
+    font-size: 13px;
+    color: #1b1b1b !important;
+}
+nav{
+    background-color: white !important;
+}

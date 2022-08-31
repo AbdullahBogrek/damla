@@ -1,0 +1,15 @@
+#searchBar {
+    border-radius: 10px;
+    border: 1px solid #cbcbcb;
+    width: 350px;
+}
+.help-modal-alert {
+    font-size: 12px;
+    padding: 7px 10px !important;
+}
+.map-modal-check {
+    font-size: 12px;
+}
+.form-floating textarea{
+    height: 100px;
+}

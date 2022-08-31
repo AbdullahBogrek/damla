@@ -1,0 +1,16 @@
+footer a{
+    text-decoration: none;
+    color: #1db954;
+}
+
+footer a:hover{
+    color: #0d7431;
+    transition: color .2s ease-in;
+}
+
+footer ul li .nav-link:hover{
+    color: #0d7431 !important;
+    text-decoration: underline;
+    transition: color .2s ease-in;
+
+}

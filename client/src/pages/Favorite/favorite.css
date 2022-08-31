@@ -1,0 +1,24 @@
+.favoriteC-card{
+    width: 23rem;  
+    height: 10rem;
+    background-repeat: no-repeat;
+    background-size: cover; 
+    color: white;
+    border-radius: 20px;
+    padding: 1rem;
+  }
+  
+  .favorite-card{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12); 
+  }
+  
+  .favorite-card:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
+    transform: scale(1.05);
+  }
+  
+  .favorite-card:hover .favorite-card-title{
+    color:  #53f78c;
+    transition: all .4s ease-in;
+  }

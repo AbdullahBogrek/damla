@@ -1,0 +1,12 @@
+.marker-info {
+    max-width: 500px;
+}
+.marker-info>.info-window-command {
+    font-size: 12px;
+}
+.marker-info>.offcanvas {
+    width: 500px;
+}
+.marker-canvas-header {
+    font-size: 13px
+}

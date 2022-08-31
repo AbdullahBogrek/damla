@@ -1,0 +1,28 @@
+.featuratte a{
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.featuratte h1 {
+    font-weight: 800;
+}
+
+.lead {
+    font-size: 18px;
+}
+
+.featurette-heading {
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -.05rem;
+    margin-top: 10rem;
+}
+
+@media screen and (max-width: 600px) {
+    .featuratte img {
+      height: 300px;
+      width: 300px;
+      margin: 0;
+      padding: 0;
+    }
+  }

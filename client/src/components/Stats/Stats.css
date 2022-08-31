@@ -1,0 +1,20 @@
+.stats-section .counter {
+    padding: 22px 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
+  }
+  .stats-section .counter .count-data {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .stats-section .counter .count {
+    font-weight: 700;
+    color: #20247b;
+    margin: 0 0 5px;
+  }
+  .stats-section .counter p {
+    font-weight: 600;
+    margin: 0;
+  }
+  
