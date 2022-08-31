@@ -77,13 +77,13 @@ For Windows
 > cd .\client 
 > npm install
 > npm start
-````
+```
 
 ``` cmd
 > cd .\server
 > npm install
 > npm run dev
-````
+```
 
 ## Features
 
