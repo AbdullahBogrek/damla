@@ -10,8 +10,8 @@ const signAccessToken = (data) => {
 		};
 
 		const options = {
-			expiresIn: "10d",
-			issuer: "ecommerce.app",
+			expiresIn: "1d",
+			issuer: "damla",
 		};
 
 		JWT.sign(payload, process.env.JWT_SECRET, options, (err, token) => {
@@ -28,7 +28,7 @@ const signAccessToken = (data) => {
 const verifyAccessToken = (req, res, next) => {
 	const authorizationToken = req.headers["authorization"];
 	if (!authorizationToken) {
-		next(Boom.unauthorized());
+		return next(Boom.unauthorized());
 	}
 
 	JWT.verify(authorizationToken, process.env.JWT_SECRET, (err, payload) => {
@@ -52,7 +52,7 @@ const signRefreshToken = (user_id) => {
 		};
 		const options = {
 			expiresIn: "180d",
-			issuer: "ecommerce.app",
+			issuer: "damla",
 		};
 
 		JWT.sign(payload, process.env.JWT_REFRESH_SECRET, options, (err, token) => {

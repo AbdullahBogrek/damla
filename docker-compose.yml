@@ -1,0 +1,27 @@
+services:
+  server:
+    build: ./server
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - MONGO_URI=mongodb://host.docker.internal:27017/damla
+      - REDIS_HOST=host.docker.internal
+      - REDIS_PORT=6379
+      - JWT_SECRET=damla-secret-key
+      - JWT_REFRESH_SECRET=damla-refresh-secret-key
+      - JWT_TOKEN_EXPIRE=30m
+      - JWT_REFRESH_EXPIRE=180d
+
+  client:
+    build: ./client
+    restart: unless-stopped
+    ports:
+      - "5555:3000"
+    environment:
+      - VITE_GOOGLE_API_KEY=AIzaSyBD2iGCBQt9wA1MOP64XC0CxA1ktPNPNOs
+      - VITE_BASE_ENDPOINT=http://localhost:4000
+    depends_on:
+      - server

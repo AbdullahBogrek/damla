@@ -23,17 +23,16 @@ const UserSchema = new Schema({
 	password: {
 		type: String,
 		required: true,
-		toJSON: false,
+		select: false,
 	},
 	birthday: {
 		type: Date,
-		required: true,
 		trim: true,
 	},
 	gender: {
-        type: String,
-        enum: ["kadın", "erkek"]
-    },
+		type: String,
+		enum: ["kadın", "erkek", "belirtmek istemiyorum"],
+	},
 	phone: {
 		type: String,
 		required: true,
@@ -75,7 +74,7 @@ UserSchema.pre("save", async function (next) {
 
 		next();
 	} catch (e) {
-		next(error);
+		next(e);
 	}
 });
 

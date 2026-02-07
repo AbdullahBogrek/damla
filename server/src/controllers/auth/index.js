@@ -1,14 +1,13 @@
 import Boom from "boom";
+import bcrypt from "bcrypt";
 import User from "../../models/user";
 
-// helpers
 import {
 	signAccessToken,
 	signRefreshToken,
 	verifyRefreshToken,
 } from "../../helpers/jwt";
 
-// validations
 import { registerSchema, loginSchema } from "./validations";
 import redis from "../../clients/redis";
 
@@ -25,7 +24,7 @@ const Register = async (req, res, next) => {
 		const isExists = await User.findOne({ email: input.email });
 
 		if (isExists) {
-			return next(Boom.conflict("This e-mail already using."));
+			return next(Boom.conflict("Bu e-posta adresi zaten kullanılıyor."));
 		}
 
 		const user = new User(input);
@@ -61,15 +60,15 @@ const Login = async (req, res, next) => {
 	}
 
 	try {
-		const user = await User.findOne({ email: input.email });
+		const user = await User.findOne({ email: input.email }).select("+password");
 
 		if (!user) {
-			throw Boom.notFound("The email address was not found.");
+			throw Boom.notFound("E-posta adresi bulunamadı.");
 		}
 
 		const isMatched = await user.isValidPass(input.password);
 		if (!isMatched) {
-			throw Boom.unauthorized("email or password not correct");
+			throw Boom.unauthorized("E-posta veya şifre hatalı.");
 		}
 
 		const accessToken = await signAccessToken({
@@ -97,8 +96,17 @@ const RefreshToken = async (req, res, next) => {
 		}
 
 		const user_id = await verifyRefreshToken(refresh_token);
-		const accessToken = await signAccessToken(user_id);
-		const refreshToken = await signRefreshToken(user_id);
+
+		const user = await User.findById(user_id);
+		if (!user) {
+			throw Boom.unauthorized();
+		}
+
+		const accessToken = await signAccessToken({
+			user_id: user._id,
+			role: user.role,
+		});
+		const refreshToken = await signRefreshToken(user._id);
 
 		res.json({ accessToken, refreshToken });
 	} catch (e) {
@@ -131,7 +139,11 @@ const Me = async (req, res, next) => {
 	const { user_id } = req.payload;
 
 	try {
-		const user = await User.findById(user_id).select("-password -__v");
+		const user = await User.findById(user_id);
+
+		if (!user) {
+			throw Boom.notFound("Kullanıcı bulunamadı.");
+		}
 
 		res.json(user);
 	} catch (e) {
@@ -141,12 +153,63 @@ const Me = async (req, res, next) => {
 
 const GetUsers = async (req, res, next) => {
 	try {
-		const kullanicilar = await User.find()
-		res.status(200).json(kullanicilar)
+		const users = await User.find();
+		res.json(users);
 	} catch (e) {
-		res.status(404).json({
-			message: error.message
-		})
+		next(e);
+	}
+};
+
+const Update = async (req, res, next) => {
+	const { user_id } = req.params;
+	const { password, role, ...input } = req.body;
+
+	try {
+		const user = await User.findByIdAndUpdate(user_id, input, { new: true });
+
+		if (!user) {
+			throw Boom.notFound("Kullanıcı bulunamadı.");
+		}
+
+		res.json(user);
+	} catch (e) {
+		next(e);
+	}
+};
+
+const UpdatePassword = async (req, res, next) => {
+	const { user_id } = req.params;
+	const { oldPassword, newPassword } = req.body;
+
+	try {
+		if (!oldPassword || !newPassword) {
+			throw Boom.badRequest("Eski ve yeni şifre gereklidir.");
+		}
+
+		if (newPassword.length < 8) {
+			throw Boom.badRequest("Yeni şifre en az 8 karakter olmalıdır.");
+		}
+
+		const user = await User.findById(user_id).select("+password");
+
+		if (!user) {
+			throw Boom.notFound("Kullanıcı bulunamadı.");
+		}
+
+		const isMatched = await user.isValidPass(oldPassword);
+		if (!isMatched) {
+			throw Boom.unauthorized("Mevcut şifre hatalı.");
+		}
+
+		const salt = await bcrypt.genSalt(10);
+		const hashed = await bcrypt.hash(newPassword, salt);
+
+		user.password = hashed;
+		await User.updateOne({ _id: user_id }, { password: hashed });
+
+		res.json({ message: "Şifre başarıyla güncellendi." });
+	} catch (e) {
+		next(e);
 	}
 };
 
@@ -157,7 +220,7 @@ const Delete = async (req, res, next) => {
 		const deleted = await User.findByIdAndDelete(user_id);
 
 		if (!deleted) {
-			throw Boom.badRequest("User not found.");
+			throw Boom.badRequest("Kullanıcı bulunamadı.");
 		}
 
 		res.json(deleted);
@@ -166,7 +229,6 @@ const Delete = async (req, res, next) => {
 	}
 };
 
-
 export default {
 	Register,
 	Login,
@@ -174,5 +236,7 @@ export default {
 	Logout,
 	Me,
 	GetUsers,
+	Update,
+	UpdatePassword,
 	Delete,
 };

@@ -9,7 +9,9 @@ router.post('/login', auth.Login);
 router.post('/refresh_token', auth.RefreshToken);
 router.post('/logout', auth.Logout);
 router.get('/me', verifyAccessToken, auth.Me);
-router.get('/', auth.GetUsers);
-router.delete("/:user_id", auth.Delete);
+router.get('/', verifyAccessToken, auth.GetUsers);
+router.put('/:user_id', verifyAccessToken, auth.Update);
+router.put('/password/:user_id', verifyAccessToken, auth.UpdatePassword);
+router.delete("/:user_id", verifyAccessToken, auth.Delete);
 
 export default router;
